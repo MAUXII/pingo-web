@@ -54,6 +54,7 @@ A coluna Spec aponta para os requisitos em [`docs/spec.md`](https://github.com/g
 | `/customers`, `/customers/new`, `/customers/[id]` | Clientes e opt-out por canal | RF-06, RF-07 |
 | `/dunning`, `/dunning/[id]` | Réguas de cobrança com linha do tempo e editor de passos | RF-14 |
 | `/templates`, `/templates/[id]` | Templates de e-mail e SMS com variáveis e pré-visualização | RF-15, RN-19 |
+| `/profile` | Meu perfil: nome, tema, troca de senha por link e dados de acesso | RF-34 |
 
 ### Configurações
 
@@ -137,7 +138,7 @@ Ainda não há sessão real. O plano, seguindo a decisão D22 da spec:
 - Cantos quase retos, entre 3 e 8 px
 - Sidebar sem bordas, com o item ativo em azul suave
 - Detalhes técnicos (IDs, chaves, tentativas) em fonte mono
-- Modo escuro automático, seguindo o sistema
+- Tema claro, escuro ou do sistema, escolhido no menu da conta (fica salvo no navegador)
 
 Todas as cores ficam como variáveis em `src/app/globals.css`, então trocar a paleta é mexer em um lugar só. As cores do gráfico foram escolhidas para continuar distinguíveis por quem tem daltonismo, tanto no claro quanto no escuro.
 

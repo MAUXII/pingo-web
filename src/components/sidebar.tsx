@@ -3,8 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
-import { LayoutGrid, Receipt, Users, Route, FileText, Settings, Search, ChevronsUpDown } from "lucide-react";
-import { Avatar, Kbd, Logo } from "./ui";
+import { LayoutGrid, Receipt, Users, Route, FileText, Settings, Search } from "lucide-react";
+import { Kbd, Logo } from "./ui";
+import { UserMenu } from "./user-menu";
 
 const nav = [
   { href: "/dashboard", label: "Visão geral", icon: LayoutGrid },
@@ -15,7 +16,9 @@ const nav = [
   { href: "/settings", label: "Configurações", icon: Settings },
 ];
 
-export function Sidebar({ tenantName, userName, role }: { tenantName: string; userName: string; role: string }) {
+type Props = { tenantName: string; userName: string; userEmail: string; role: string };
+
+export function Sidebar(props: Props) {
   const path = usePathname();
   return (
     <>
@@ -57,23 +60,14 @@ export function Sidebar({ tenantName, userName, role }: { tenantName: string; us
             <span className="size-1.5 rounded-full bg-amber" />
             Stripe em modo de teste
           </div>
-          <button className="flex w-full items-center gap-3 rounded-md p-2 text-left hover:bg-gray-soft">
-            <Avatar name={userName} size={32} />
-            <span className="min-w-0 flex-1">
-              <span className="block truncate text-[13px] font-medium">{tenantName}</span>
-              <span className="block truncate text-[12px] text-fg-2">
-                {userName} · {role === "ADMIN" ? "Admin" : "Operador"}
-              </span>
-            </span>
-            <ChevronsUpDown className="size-4 text-fg-3" />
-          </button>
+          <UserMenu {...props} />
         </div>
       </aside>
 
       <div className="sticky top-0 z-20 bg-[var(--sidebar)] lg:hidden">
         <div className="flex h-14 items-center justify-between px-4">
           <Logo size={24} />
-          <Avatar name={userName} size={28} />
+          <UserMenu {...props} compact />
         </div>
         <nav className="no-scrollbar flex gap-1 overflow-x-auto px-3 pb-2">
           {nav.map(({ href, label }) => {

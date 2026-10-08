@@ -15,7 +15,7 @@ import { useState } from "react";
 const triggerCls =
   "inline-flex h-10 w-full items-center justify-between gap-2 rounded-xl bg-surface px-3.5 text-left text-[14px] text-fg shadow-[inset_0_0_0_1px_var(--line-strong)] outline-none transition-shadow data-[placeholder]:text-fg-3 focus-visible:shadow-[inset_0_0_0_1px_var(--accent),0_0_0_4px_var(--accent-soft)] data-[state=open]:shadow-[inset_0_0_0_1px_var(--accent),0_0_0_4px_var(--accent-soft)]";
 
-const popCls =
+export const popCls =
   "z-50 overflow-hidden rounded-xl bg-surface p-1 shadow-pop ring-1 ring-line data-[state=open]:animate-[pop-in_120ms_ease-out]";
 
 export type Option = { value: string; label: string; hint?: string; disabled?: boolean };
