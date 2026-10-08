@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+/* Design tokens. Light is the reference look; dark follows the system setting. */
+:root {
+  --bg: #f5f5f7;
+  --surface: #ffffff;
+  --surface-2: #fafafa;
+  --sidebar: #f5f5f7;
+  --line: rgba(0, 0, 0, 0.07);
+  --line-strong: rgba(0, 0, 0, 0.12);
+  --fg: #1d1d1f;
+  --fg-2: #6e6e73;
+  --fg-3: #a1a1a6;
+  --accent: #0071e3; /* Apple blue */
+  --accent-soft: rgba(0, 113, 227, 0.08);
+  --chart-1: #0e9f8e;
+  --chart-2: #0071e3;
+  --accent-fg: #ffffff;
+  --green: #1f9d55;
+  --green-soft: rgba(31, 157, 85, 0.1);
+  --amber: #b26a00;
+  --amber-soft: rgba(230, 150, 20, 0.12);
+  --red: #d93025;
+  --red-soft: rgba(217, 48, 37, 0.09);
+  --gray-soft: rgba(0, 0, 0, 0.05);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 2px 6px rgba(0, 0, 0, 0.04), 0 24px 48px rgba(0, 0, 0, 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #000000;
+    --surface: #161617;
+    --surface-2: #1c1c1e;
+    --sidebar: #000000;
+    --line: rgba(255, 255, 255, 0.08);
+    --line-strong: rgba(255, 255, 255, 0.14);
+    --fg: #f5f5f7;
+    --fg-2: #a1a1a6;
+    --fg-3: #6e6e73;
+    --accent: #2f8cf0;
+    --accent-soft: rgba(47, 140, 240, 0.16);
+    --chart-1: #16a091;
+    --chart-2: #2f8cf0;
+    --green: #30d158;
+    --green-soft: rgba(48, 209, 88, 0.14);
+    --amber: #ffb340;
+    --amber-soft: rgba(255, 179, 64, 0.14);
+    --red: #ff6961;
+    --red-soft: rgba(255, 105, 97, 0.14);
+    --gray-soft: rgba(255, 255, 255, 0.07);
+    --shadow: 0 0 0 1px rgba(255, 255, 255, 0.04);
+    --shadow-lg: 0 0 0 1px rgba(255, 255, 255, 0.06), 0 24px 48px rgba(0, 0, 0, 0.5);
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-fg: var(--fg);
+  --color-fg-2: var(--fg-2);
+  --color-fg-3: var(--fg-3);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-green: var(--green);
+  --color-green-soft: var(--green-soft);
+  --color-amber: var(--amber);
+  --color-amber-soft: var(--amber-soft);
+  --color-red: var(--red);
+  --color-red-soft: var(--red-soft);
+  --color-gray-soft: var(--gray-soft);
+  --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), "SF Mono", ui-monospace, Menlo, monospace;
+  --shadow-card: var(--shadow);
+  --radius-sm: 3px;
+  --radius-md: 4px;
+  --radius-lg: 5px;
+  --radius-xl: 6px;
+  --radius-2xl: 7px;
+  --radius-3xl: 8px;
+  --shadow-pop: var(--shadow-lg);
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+  letter-spacing: -0.011em;
+}
+
+::selection {
+  background: var(--accent-soft);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Blinking block caret, Claude Code style. */
+@keyframes caret {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.caret::after {
+  content: "";
+  display: inline-block;
+  width: 0.55em;
+  height: 1.05em;
+  margin-left: 2px;
+  vertical-align: -0.15em;
+  background: var(--accent);
+  animation: caret 1.1s steps(1) infinite;
+}
+
+@keyframes pop-in {
+  from { opacity: 0; transform: translateY(-4px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Horizontal scrollers (tabs, chips) keep scrolling but never show a bar. */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
